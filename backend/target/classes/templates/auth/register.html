@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/default}">
+<head>
+    <title th:text="${pageTitle}">Register - Volunteer Hub</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4 text-center" style="color: var(--primary-text);">Register as a Volunteer</h2>
+            <form th:action="@{/api/v1/auth/register}" method="post" id="registrationForm">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="pincode" class="form-label">Pincode</label>
+                    <input type="text" class="form-control" id="pincode" name="pincode" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </form>
+            <div class="mt-3 text-center">
+                <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const registrationForm = document.getElementById('registrationForm');
+            registrationForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match!"); // Basic client-side validation
+                    return;
+                }
+
+                // If passwords match, proceed with form submission (using fetch API for AJAX)
+                const formData = new FormData(registrationForm);
+                fetch('/api/v1/auth/register', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData) // Encode form data for POST request
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Redirect to OTP verification page after successful registration
+                        window.location.href = '/verify-otp?email=' + formData.get('email'); // Redirect with email as query param
+                    } else {
+                        alert("Registration failed. Please check your details and try again."); // Basic error handling
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during registration:', error);
+                    alert("Registration failed. An error occurred.");
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

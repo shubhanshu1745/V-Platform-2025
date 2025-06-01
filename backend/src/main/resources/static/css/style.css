@@ -1,0 +1,252 @@
+/* Final Updated Color Theme - Refined Navbar and Responsiveness */
+:root {
+    /* Primary Navigation & Headers */
+    --primary-nav-header-bg: #2C5784;
+    --primary-nav-header-text: #F8F8F8;
+
+    /* Main Content Areas */
+    --main-content-bg: #F8F8F8;
+    --alternate-content-bg: #EDEDED;
+    --primary-text: #251101;
+    --secondary-text: #5B1865;
+
+    /* Accents & Calls-to-Action */
+    --primary-cta-button-bg: #5688C7;
+    --primary-cta-button-hover-bg: #5B1865;
+    --secondary-cta-button-hover-bg: #470024;
+    --secondary-cta-accent-1: #1ABC9C;
+    --secondary-cta-accent-2: #F39C12;
+
+    /* Footer & Dividers */
+    --footer-bg: #2A3439;
+    --footer-text: #F8F8F8;
+
+    /* Interactive Elements & Hover States */
+    --interactive-accent: #5688C7;
+    --interactive-hover: #5B1865;
+    --subtle-animation-accent: #1ABC9C;
+    --interactive-accent-rgba: 86, 136, 199; /* RGBA value for Lighter Blue */
+
+    /* Font Family */
+    --main-font-family: 'Arial', sans-serif; /* Or try 'Roboto', 'Open Sans', etc. */
+}
+
+body {
+    font-family: var(--main-font-family);
+    color: var(--primary-text);
+    background-color: var(--main-content-bg);
+}
+
+/* Primary Navigation & Headers - REFINED NAVBAR STYLING */
+.navbar {
+    background-color: var(--primary-nav-header-bg) !important; /* Steel Blue Navbar */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+}
+
+.navbar-brand {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--primary-nav-header-text) !important; /* Soft White logo */
+    padding-right: 1.5rem;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-nav-header-text) !important; /* Keep white on hover */
+}
+
+.navbar-nav .nav-link {
+    color: var(--primary-nav-header-text) !important; /* Soft White nav links */
+    padding: 0.7rem 1.2rem;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    border-radius: 7px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2); /* More noticeable hover background */
+    color: var(--interactive-accent) !important; /* Hover text color to accent */
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.6);
+    padding: 0.3rem 0.6rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Brighter white toggler icon */
+}
+
+/* Main Content Areas - RESPONSIVE CONTAINER */
+.container {
+    background-color: var(--main-content-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+    width: 100%; /* Make container full-width by default */
+}
+
+/* Media query for smaller screens to adjust container margin and padding */
+@media (max-width: 768px) { /* Example breakpoint for tablets/smaller desktops */
+    .container {
+        padding: 15px; /* Reduce padding on smaller screens */
+        margin: 15px auto; /* Reduce margin on smaller screens */
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-text);
+    margin-bottom: 0.75rem;
+}
+
+p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* Accents & Calls-to-Action - BUTTON HOVER ANIMATION */
+.btn-primary,
+.btn-secondary {
+    background-color: var(--primary-cta-button-bg);
+    border-color: var(--primary-cta-button-bg);
+    color: var(--primary-nav-header-text);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease; /* Added transform transition */
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    background-color: var(--primary-cta-button-hover-bg);
+    border-color: var(--primary-cta-button-hover-bg);
+    transform: scale(1.03); /* Slightly scale up on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Add a subtle shadow on hover */
+}
+
+.btn-secondary {
+    background-color: var(--secondary-cta-accent-1);
+    border-color: var(--secondary-cta-accent-1);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-cta-button-hover-bg);
+    border-color: var(--secondary-cta-button-hover-bg);
+}
+
+/* Link Styles */
+a {
+    color: var(--primary-cta-button-bg);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--interactive-hover);
+    text-decoration: underline;
+}
+
+/* Cards - REFINED HOVER EFFECT */
+.card {
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transition for smoother hover effect */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slightly more pronounced translateY */
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+}
+
+.card-title {
+    color: var(--secondary-text);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    background-color: var(--alternate-content-bg);
+    border-top: 1px solid #eee;
+    padding: 1rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Footer & Dividers - RESPONSIVE FOOTER TEXT ALIGNMENT */
+footer {
+    background-color: var(--footer-bg) !important;
+    color: var(--footer-text);
+    padding: 30px 0;
+    margin-top: 40px;
+    text-align: center; /* Default center alignment */
+}
+
+@media (min-width: 768px) { /* For larger screens, keep center alignment */
+    footer {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) { /* For smaller screens, left-align text in columns */
+    footer .col-md-4 { /* Target columns within footer */
+        text-align: left;
+    }
+    footer {
+        text-align: center; /* Overall footer text center on small screens */
+    }
+}
+
+
+footer p {
+    color: var(--footer-text);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+hr {
+    border-top: 1px solid var(--primary-nav-header-bg);
+    margin: 2rem 0;
+}
+
+/* Form Elements - FOCUS STATE RGBA VARIABLE */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0.7rem 1rem;
+    margin-bottom: 15px;
+}
+
+.form-control:focus {
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 0.2rem rgba(var(--interactive-accent-rgba), 0.25); /* #5688C7 RGBA - Using CSS Variable */
+    outline: 0;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.text-muted-secondary {
+    color: var(--secondary-text) !important;
+}

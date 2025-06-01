@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h2>Volunteer Dashboard</h2>
+    <p>Welcome, Volunteer!</p>
+  
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Applied Events</h3>
+        <p class="text-muted" *ngIf="appliedEvents().length === 0">You haven't applied for any events yet.</p>
+        <div *ngFor="let event of appliedEvents()">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+        <div class="text-center" *ngIf="loadingAppliedEvents()">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <h3>Recommended Events (Placeholder)</h3>
+        <p class="text-muted">Recommended events based on your location and skills will appear here soon.</p>
+        <p>Feature coming soon...</p>
+      </div>
+    </div>
+  </div>

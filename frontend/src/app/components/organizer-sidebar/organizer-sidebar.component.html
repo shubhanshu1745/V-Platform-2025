@@ -1,0 +1,36 @@
+<!-- src/app/components/organizer-sidebar/organizer-sidebar.component.html -->
+<div class="organizer-sidebar">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/organizer/dashboard" routerLinkActive="active">
+          <i class="bi bi-speedometer2"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/organizer/create-event" routerLinkActive="active">
+          <i class="bi bi-calendar-plus"></i> Create Event
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/organizer/events/applicants" routerLinkActive="active">
+          <i class="bi bi-people"></i> Manage Applicants
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/organizer/events/payments" routerLinkActive="active">
+          <i class="bi bi-credit-card"></i> Event Payments
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/organizer/volunteers/payments" routerLinkActive="active">
+          <i class="bi bi-credit-card-2-front"></i> Volunteer Payments
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/organizer/search-volunteers" routerLinkActive="active">
+          <i class="bi bi-search"></i> Search Volunteers
+        </a>
+      </li>
+      <!-- Add more organizer-specific links here -->
+    </ul>
+  </div>

@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Verify OTP</h2>
+            <p class="card-text text-center">Please enter the 6-digit OTP sent to your email.</p>
+            <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="otp" class="form-label">OTP</label>
+                <input type="text" class="form-control" id="otp" formControlName="otp" maxlength="6">
+                <div *ngIf="otpForm.controls['otp'].invalid && (otpForm.controls['otp'].dirty || otpForm.controls['otp'].touched)" class="text-danger">
+                  <div *ngIf="otpForm.controls['otp'].errors?.['required']">OTP is required.</div>
+                  <div *ngIf="otpForm.controls['otp'].errors?.['pattern']">Invalid OTP format. Please enter 6 digits.</div>
+                </div>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary" [disabled]="otpForm.invalid || loading()">
+                  <span *ngIf="loading()" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                  Verify OTP
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

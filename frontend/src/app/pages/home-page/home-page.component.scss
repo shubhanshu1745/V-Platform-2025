@@ -1,0 +1,151 @@
+// Variables (same as before)
+$primary-color: #768578;
+$accent-color: #C0777C;
+$neutral-color: #F4EEF1;
+$text-color: #373737;
+$shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$transition: 0.3s ease-in-out;
+$gradient-colors: #ff7f7f, #ffb6c1, #ffc0cb; // Define gradient colors
+
+// Home Container (same as before)
+.home-container {
+  padding: 20px;
+  text-align: center;
+
+  // Hero Section (same as before)
+  .hero {
+    padding: 80px 20px;
+    background-color: $neutral-color;
+    color: $text-color;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    box-shadow: $shadow;
+
+    h1 {
+      color: $primary-color;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+
+      button {
+        font-size: 1.1em;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: background-color $transition;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  // Feature Cards Section (UPDATED ICON TEXT STYLING FOR VISIBILITY)
+  .feature-cards-section {
+    padding: 40px 20px;
+    h2 {
+      color: $primary-color;
+      margin-bottom: 40px;
+      font-size: 2em;
+    }
+
+    .feature-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background-color: white;
+      box-shadow: $shadow;
+      transition: transform $transition;
+      text-align: center;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+
+      .feature-card mat-icon {
+        font-size: 40px;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 2px solid #ddd;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        background-image: linear-gradient(to right, $gradient-colors);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transition: transform $transition;
+      
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+      
+      h3 {
+        margin-bottom: 10px;
+        color: $primary-color;
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: $text-color;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  // Event Listing Section (same as before)
+  .event-listing-section {
+    padding: 40px 20px;
+    background-color: $neutral-color;
+    border-radius: 12px;
+    box-shadow: $shadow;
+
+    h2 {
+      color: $primary-color;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+
+    .filter-bar {
+      margin-bottom: 20px;
+
+      .filter-inputs {
+        gap: 15px;
+      }
+
+      mat-form-field {
+        width: 100%;
+
+        .mat-form-field-outline {
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}

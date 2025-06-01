@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/default}">
+<head>
+    <title th:text="${pageTitle}">Record Attendance - Volunteer Hub</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="mb-4" style="color: var(--primary-text);">Record Attendance for Event: <span th:text="${event.title}"></span></h2>
+
+    <form th:action="@{/api/v1/events/{eventId}/attendance(eventId=${event.eventId})}" method="post" id="attendanceForm">
+        <div th:each="applicant : ${applicants}" class="mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${applicant.volunteer.firstName + ' ' + applicant.volunteer.lastName}" style="color: var(--secondary-text);"></h5>
+                    <p class="card-text"><small class="text-muted-secondary">Email: <span th:text="${applicant.volunteer.email}"></span></small></p>
+                    <input type="hidden" name="attendanceDTOs[__${applicantStat.index}__].volunteerId" th:value="${applicant.volunteer.userId}"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="checkInTime" class="form-label">Check-In Time</label>
+                            <input type="datetime-local" class="form-control" th:name="'attendanceDTOs[' + ${applicantStat.index} +'].checkInTime'" id="checkInTime">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="checkOutTime" class="form-label">Check-Out Time</label>
+                            <input type="datetime-local" class="form-control" th:name="'attendanceDTOs[' + ${applicantStat.index} +'].checkOutTime'" id="checkOutTime">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Record Attendance</button>
+    </form>
+
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const attendanceForm = document.getElementById('attendanceForm');
+            attendanceForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(attendanceForm);
+                const attendanceData = [];
+                const volunteerIds = formData.getAll('attendanceDTOs[0].volunteerId'); // Example: Get all volunteerIds (adjust index if needed)
+                const checkInTimes = formData.getAll('attendanceDTOs[0].checkInTime');
+                const checkOutTimes = formData.getAll('attendanceDTOs[0].checkOutTime');
+
+                for (let i = 0; i < volunteerIds.length; i++) {
+                    attendanceData.push({
+                        volunteerId: volunteerIds[i],
+                        checkInTime: checkInTimes[i],
+                        checkOutTime: checkOutTimes[i]
+                    });
+                }
+
+                fetch(/*[[@{/api/v1/events/{eventId}/attendance(eventId=${event.eventId})}]]*/ '', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(attendanceData) // Send attendance data as JSON array
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Attendance recorded successfully!");
+                        // Optionally redirect or update UI
+                    } else {
+                        alert("Error recording attendance. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error recording attendance:', error);
+                    alert("Error recording attendance. An error occurred.");
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

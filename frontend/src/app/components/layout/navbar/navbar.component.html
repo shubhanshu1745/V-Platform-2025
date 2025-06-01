@@ -1,0 +1,67 @@
+<!-- src/app/components/navbar/navbar.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container-fluid">
+    <!-- Brand Logo/Name -->
+    <a class="navbar-brand" routerLink="/">Volunteer Platform</a>
+
+    <!-- Navbar Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      aria-controls="navbarNav"
+      [attr.aria-expanded]="!isNavbarCollapsed"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Collapse -->
+    <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNavbar()">Browse Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/pricing" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNavbar()">Pricing</a>
+        </li>
+
+        <!-- Public Links (Login/Register) -->
+        <ng-container *ngIf="!authService.isAuthenticatedUser()">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNavbar()">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNavbar()">Register</a>
+          </li>
+        </ng-container>
+
+        <!-- Authenticated User Menu -->
+        <ng-container *ngIf="authService.isAuthenticatedUser()">
+          <!-- Role Switch Dropdown -->
+          <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" ngbDropdownToggle id="roleDropdown">
+              {{ isOrganizerRole() ? 'Organizer View' : 'Volunteer View' }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu aria-labelledby="roleDropdown">
+              <li><button class="dropdown-item" (click)="onRoleToggle(roleType.VOLUNTEER)" *ngIf="isOrganizerRole()">Volunteer View</button></li>
+              <li><button class="dropdown-item" (click)="onRoleToggle(roleType.ORGANIZER)" *ngIf="!isOrganizerRole()">Organizer View</button></li>
+            </ul>
+          </li>
+
+          <!-- My Account Dropdown -->
+          <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" ngbDropdownToggle id="userDropdown">
+              My Account
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" routerLink="/profile" (click)="closeNavbar()">Profile</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" (click)="logout(); closeNavbar()">Logout</a></li>
+            </ul>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>

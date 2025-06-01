@@ -1,0 +1,29 @@
+<!-- src/app/components/event-card/event-card.component.html -->
+<div class="card event-card">
+  <div class="event-image-container">  <!--- NEW container for image with overlay -->
+    <img
+      *ngIf="event?.photoBase64"
+      [src]="'data:image/jpeg;base64,' + event?.photoBase64"
+      alt="Event Photo"
+      class="card-img-top event-photo"
+    />
+    <img
+      *ngIf="!event?.photoBase64"
+      src="assets/images/default-event.png"
+      alt="Default Event Photo"
+      class="card-img-top event-photo"
+    />
+    <div class="event-card-overlay">  <!--- NEW overlay for gradient effect --></div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ event?.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <mat-icon>location_on</mat-icon> {{ event?.location }} 
+    </h6>
+    <p class="card-text">{{ event?.description | slice:0:100 }}...</p>
+    <div class="card-actions"> 
+      <a routerLink="/events/{{ event?.eventId }}" mat-raised-button color="accent">View Details</a> <!---- Material Button -->
+      <button *ngIf="!isOrganizerEvent()" mat-raised-button color="primary" class="apply-button">Apply Now</button> <!---- Material Button -->
+    </div>
+  </div>
+</div>

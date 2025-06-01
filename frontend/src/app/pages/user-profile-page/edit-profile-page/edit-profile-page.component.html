@@ -1,0 +1,63 @@
+<div class="container mt-4">
+  <h2>Edit Profile</h2>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
+      </div>
+      <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
+      </div>
+      <div class="mb-3">
+          <label for="pincode" class="form-label">Pincode</label>
+          <input type="text" class="form-control" id="pincode" formControlName="pincode">
+      </div>
+      <div class="mb-3">
+          <label for="contactDetails" class="form-label">Contact Details</label>
+          <input type="text" class="form-control" id="contactDetails" formControlName="contactDetails">
+      </div>
+      <div class="mb-3">
+          <label for="skills" class="form-label">Skills (comma-separated)</label>
+          <input type="text" class="form-control" id="skills" formControlName="skills">
+      </div>
+      <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select class="form-select" id="gender" formControlName="gender">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+          </select>
+      </div>
+      <div class="mb-3">
+          <label for="photoFile" class="form-label">Profile Photo</label>
+          <input type="file" class="form-control" id="photoFile" formControlName="photoFile" (change)="onFileChange($event)">
+      </div>
+
+      <!-- --- Volunteer Availability Calendar Feature - Datepicker --- -->
+      <div class="mb-3">
+          <label for="availabilityCalendar" class="form-label">Availability Calendar</label>
+          <mat-form-field appearance="outline" style="width: 100%;"> 
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="availabilityCalendar">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+      <!-- --- End Volunteer Availability Calendar Feature --- -->
+
+      <div class="action-buttons mt-4">
+          <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid || loading()">
+              <span *ngIf="loading()" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+              Save Changes
+          </button>
+          <button routerLink="../" class="btn btn-secondary ms-2">Cancel</button>
+      </div>
+  </form>
+</div>
+
+<div *ngIf="loading()" class="loading-container text-center mt-5">
+  <app-loading-spinner></app-loading-spinner>
+</div>

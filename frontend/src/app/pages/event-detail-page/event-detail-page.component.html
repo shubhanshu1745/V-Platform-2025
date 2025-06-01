@@ -1,0 +1,115 @@
+<div class="event-detail-page">
+  <div class="container" *ngIf="event()">
+    <article class="event-card">
+      <header class="event-header">
+        <ng-container *ngIf="event()?.photoBase64; else defaultPhoto">
+          <img
+            [src]="'data:image/jpeg;base64,' + event()?.photoBase64"
+            alt="Event Photo"
+            class="detail-event-photo"
+          />
+        </ng-container>
+        <ng-template #defaultPhoto>
+          <img
+            src="assets/images/default-event-large.png"
+            alt="Default Event Photo"
+            class="detail-event-photo"
+          />
+        </ng-template>
+        <div class="event-info">
+          <h1 class="event-title">{{ event()?.title }}</h1>
+          <p class="event-subtitle">
+            <mat-icon>location_on</mat-icon>
+            <span>{{ event()?.location }}</span>
+          </p>
+          <div class="event-meta">
+            <span class="date">
+              <mat-icon>calendar_today</mat-icon>
+              {{ event()?.startDate | date: 'fullDate' }}
+            </span>
+            <span class="capacity" *ngIf="event()?.volunteerCapacity">
+              <mat-icon>groups</mat-icon>
+              {{ event()?.volunteerCapacity }} Volunteers
+            </span>
+            <span class="payment" *ngIf="event()?.paymentAmount">
+              <mat-icon>payments</mat-icon>
+              ${{ event()?.paymentAmount }} Payment
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <section class="event-body">
+        <section class="detail-section description-section">
+          <h2>Description</h2>
+          <p class="description-text">{{ event()?.description }}</p>
+        </section>
+
+        <section class="detail-section skills-section" *ngIf="event()?.requiredSkills">
+          <h2>Required Skills</h2>
+          <div class="skills-badges">
+            <span class="badge" *ngFor="let skill of requiredSkillsList()">
+              {{ skill.trim() }}
+            </span>
+          </div>
+        </section>
+
+        <section class="detail-section datetime-section">
+          <h2>Date and Time</h2>
+          <div class="datetime-details">
+            <p>
+              <mat-icon>event_available</mat-icon>
+              <strong>Start Date:</strong>
+              {{ event()?.startDate | date: 'medium' }}
+            </p>
+            <p>
+              <mat-icon>event_busy</mat-icon>
+              <strong>End Date:</strong>
+              {{ event()?.endDate | date: 'medium' }}
+            </p>
+            <p *ngIf="event()?.lastRegistrationDate">
+              <mat-icon>date_range</mat-icon>
+              <strong>Last Date to Register:</strong>
+              {{ event()?.lastRegistrationDate | date: 'mediumDate' }}
+            </p>
+          </div>
+        </section>
+
+        <section class="detail-section contact-section" *ngIf="event()?.contacts">
+          <h2>Contact Information</h2>
+          <p>{{ event()?.contacts }}</p>
+        </section>
+      </section>
+
+      <footer class="card-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="applyForEvent()"
+          [disabled]="loading() || applying()"
+          *ngIf="canApply()"
+        >
+          <!-- Using a material spinner for better consistency -->
+          <mat-progress-spinner
+            *ngIf="loading() || applying()"
+            diameter="20"
+            mode="indeterminate"
+          ></mat-progress-spinner>
+          <span *ngIf="!(loading() || applying())">Apply Now</span>
+        </button>
+        <button mat-button routerLink="/events">Back to Events</button>
+      </footer>
+    </article>
+  </div>
+
+  <!-- Loading state -->
+  <div *ngIf="loading() && !event()" class="loading-container text-center mt-5">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <!-- Not found state -->
+  <div *ngIf="!loading() && !event() && eventId > 0" class="container mt-5 text-center">
+    <p class="text-danger">Event details not found.</p>
+    <button mat-button routerLink="/events">Back to Events</button>
+  </div>
+</div>

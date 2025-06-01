@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h2>Browse Volunteer Events</h2>
+
+  <div class="filter-section mb-3">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-3">
+        <label for="pincodeFilter" class="form-label">Pincode:</label>
+        <input type="text" class="form-control" id="pincodeFilter" [(ngModel)]="pincodeFilter" (input)="applyFilters()">
+      </div>
+      <div class="col-md-3">
+        <label for="startDateFilter" class="form-label">Start Date:</label>
+        <input type="date" class="form-control" id="startDateFilter" [(ngModel)]="startDateFilter" (input)="applyFilters()">
+      </div>
+      <div class="col-md-3">
+        <label for="endDateFilter" class="form-label">End Date:</label>
+        <input type="date" class="form-control" id="endDateFilter" [(ngModel)]="endDateFilter" (input)="applyFilters()">
+      </div>
+      <div class="col-md-3">
+        <label for="skillsFilter" class="form-label">Skills (comma-separated):</label>
+        <input type="text" class="form-control" id="skillsFilter" [(ngModel)]="skillsFilter" (input)="applyFilters()">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let event of events()">
+      <app-event-card [event]="event"></app-event-card>
+    </div>
+    <div class="col-12" *ngIf="events().length === 0 && !loading()">
+      <p class="text-muted">No events found matching your criteria.</p>
+    </div>
+    <div class="col-12 text-center" *ngIf="loading()">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </div>
+</div>

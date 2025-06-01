@@ -1,0 +1,126 @@
+/* src/app/components/footer/footer.component.scss */
+@use 'bootstrap/scss/bootstrap-grid';
+@use 'sass:color';
+
+// Variables
+$footer-bg-color: #FFC0CB; // Soft Rose
+$footer-link-color: #005A5A;
+$footer-link-hover: #008080;
+$footer-text-color: #373737;
+$footer-font: "Poppins", sans-serif;
+$footer-padding: 40px 0; // Increased padding for more vertical space
+$footer-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+$footer-transition: 0.3s ease-in-out;
+
+// Footer Styles
+.footer {
+  background: linear-gradient(90deg, $footer-bg-color, #FFC0CB, #ff8297) !important;
+  box-shadow: $footer-shadow;
+  padding: $footer-padding;
+  border-radius: 12px;
+  transition: all $footer-transition;
+  font-family: $footer-font;
+  color: $footer-text-color;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+
+    .footer-section {
+      flex: 1 1 30%;
+      min-width: 200px;
+      padding: 10px;
+
+      h3 {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+        color: darken($footer-text-color, 10%);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      ul.list-unstyled {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 12px;
+
+          a {
+            color: $footer-link-color;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color $footer-transition;
+
+            &:hover {
+              color: $footer-link-hover;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      &.about-us {
+        p {
+          margin-bottom: 20px;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          color: $footer-text-color;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 15px;
+
+          a {
+            color: $footer-link-color;
+            font-size: 1.2rem;
+            transition: color $footer-transition;
+
+            &:hover {
+              color: $footer-link-hover;
+            }
+          }
+        }
+      }
+
+      &.legal {
+        ul {
+          margin-bottom: 20px;
+        }
+
+        .copyright {
+          font-size: 0.85rem;
+          margin-top: 15px;
+          color: $footer-text-color;
+        }
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 30px;
+
+      .footer-section {
+        flex: 1 1 100%;
+        padding: 10px 0;
+      }
+    }
+  }
+}

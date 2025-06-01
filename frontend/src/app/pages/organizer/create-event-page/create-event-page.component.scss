@@ -1,0 +1,188 @@
+/* src/app/pages/organizer/create-event-page/create-event-page.component.scss */
+@use 'sass:color';
+@import 'bootstrap/scss/bootstrap-grid'; // Import Bootstrap Grid
+
+.create-event-page {
+    padding: 2rem;
+    background-color: #f8f9fa; // Light background for the page
+    font-family: 'Roboto', sans-serif;
+
+    h2 {
+        margin-bottom: 1.5rem;
+        color: #343a40;
+        text-align: center;
+        font-weight: bold;
+        font-size: 2.5rem;
+        letter-spacing: 0.5px;
+    }
+
+    .event-form {
+        max-width: 1000px;
+        margin: 0 auto; // Center the form
+    }
+
+    .form-section {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        border: 1px solid #dee2e6; // Light border
+
+        h3 {
+            color: #495057;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+            text-align: left;
+            font-size: 1.75rem;
+            font-weight: 500;
+        }
+
+        .form-grid {
+            @include make-row(); // Use Bootstrap grid mixin
+            margin-bottom: 1rem;
+
+            mat-form-field {
+                @include make-col-ready();
+                @include make-col(6); // 2 columns on larger screens
+                padding-right: 0.5rem;
+                padding-left: 0.5rem;
+
+                @media (max-width: 768px) { // Stack on smaller screens
+                    @include make-col(12);
+                }
+            }
+        }
+
+        mat-form-field.full-width {
+            width: 100%;
+        }
+
+        mat-form-field {
+            .mat-form-field-label {
+                color: #6c757d; // Muted label color
+                font-weight: 500;
+            }
+
+            .mat-form-field-outline {
+                color: #ced4da; // Muted outline color
+            }
+
+            .mat-input-element {
+                color: #343a40; // Dark input text color
+            }
+
+            &.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+                color: #007bff !important; // Primary color when focused
+            }
+        }
+    }
+
+    .photo-upload {
+        margin-bottom: 2rem;
+        text-align: center;
+
+        .form-label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: #495057;
+            font-size: 1.2rem;
+        }
+
+        input[type="file"] {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 0.5rem;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            &:focus,
+            &:hover {
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                border-color: #80bdff;
+                outline: 0;
+            }
+        }
+
+
+        .photo-preview {
+            margin-top: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            max-height: 300px;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+            img {
+                width: auto; /* Changed to auto width */
+                max-width: 100%; /* Image responsive within preview */
+                height: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+
+
+    .form-actions {
+        margin-top: 3rem;
+        text-align: center;
+
+        button {
+            margin: 0 1rem;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 0.3rem;
+            min-width: 120px;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.15);
+            }
+
+            &:disabled {
+                opacity: 0.7;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+/* Responsive adjustments for smaller screens - already included in previous SCSS */
+@media (max-width: 768px) {
+    .create-event-page {
+      padding: 1rem;
+    }
+
+    .event-form {
+      .form-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+
+        .form-grid {
+          grid-template-columns: 1fr; /* Stack form fields on smaller screens */
+        }
+      }
+
+      .form-actions {
+        button {
+          width: 100%;
+          margin-bottom: 0.5rem;
+          &:first-child {
+            margin-left: 0;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }

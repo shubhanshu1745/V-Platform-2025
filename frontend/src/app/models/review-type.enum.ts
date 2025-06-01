@@ -1,0 +1,4 @@
+export enum ReviewType {
+    VOLUNTEER_REVIEW = 'VOLUNTEER_REVIEW',
+    ORGANIZER_REVIEW = 'ORGANIZER_REVIEW'
+  }

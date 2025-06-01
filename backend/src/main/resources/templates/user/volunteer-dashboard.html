@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/default}">
+<head>
+    <title th:text="${pageTitle}">Volunteer Dashboard - Volunteer Hub</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="mb-4" style="color: var(--primary-text);">Volunteer Dashboard</h2>
+    <p>Welcome to your Volunteer Dashboard! Here you can:</p>
+    <ul>
+        <li>Browse available volunteer events.</li>
+        <li>View your applied events.</li>
+        <li>Manage your profile.</li>
+        <li>Switch to Organizer role (if applicable).</li>
+    </ul>
+
+    <div class="mt-4">
+        <a th:href="@{/events}" class="btn btn-primary">Browse Events</a>
+        <a th:href="@{/profile}" class="btn btn-secondary">View Profile</a>
+        <!-- Add more volunteer-specific actions/links here -->
+    </div>
+</div>
+</body>
+</html>

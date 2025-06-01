@@ -1,0 +1,79 @@
+<div class="home-container">
+  <section class="hero">
+    <h1>Welcome to Volunteer Provider Platform</h1>
+    <p>Connecting organizers with passionate volunteers to make events successful.</p>
+    <div *ngIf="!isLoggedIn()" class="hero-buttons">
+      <button mat-raised-button color="primary" (click)="navigateToRegister()">Get Started - Register Now</button>
+      <button mat-button color="primary" (click)="navigateToLogin()">Already Registered? Login</button>
+    </div>
+  </section>
+
+  <section class="feature-cards-section">
+    <h2>Why Choose Us?</h2>
+    <div class="feature-card-grid">
+      <div class="feature-card">
+        <mat-icon>thumb_up</mat-icon>
+        <h3>Easy to Use</h3>
+        <p>Simple and intuitive platform for both organizers and volunteers.</p>
+      </div>
+      <div class="feature-card">
+        <mat-icon>visibility</mat-icon>
+        <h3>Transparent Process</h3>
+        <p>Clear communication and tracking of volunteer applications and attendance.</p>
+      </div>
+      <div class="feature-card">
+        <mat-icon>payment</mat-icon>
+        <h3>Paid Volunteer Opportunities</h3>
+        <p>Organizers can easily manage payments for their valued volunteers.</p>
+      </div>
+      <div class="feature-card">
+        <mat-icon>diversity_3</mat-icon>
+        <h3>Diverse Volunteer Pool</h3>
+        <p>Access a wide range of volunteers with varied skills and backgrounds.</p>
+      </div>
+      <div class="feature-card">
+        <mat-icon>event</mat-icon>
+        <h3>Wide Range of Events</h3>
+        <p>Find volunteer opportunities across various sectors and causes.</p>
+      </div>
+      <div class="feature-card">
+        <mat-icon>verified_user</mat-icon>
+        <h3>Secure & Reliable</h3>
+        <p>Trusted platform ensuring secure interactions and reliable volunteer matching.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="event-listing-section">
+    <h2>Browse Upcoming Events</h2>
+    <div class="filter-bar mb-3">
+      <div class="filter-inputs row g-3 align-items-center">
+        <div class="col-md-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Filter by Pincode</mat-label>
+            <input matInput id="pincodeFilter" [(ngModel)]="pincodeFilter" (input)="applyFilters()">
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Search Events</mat-label>
+            <input matInput id="searchFilter" [(ngModel)]="searchFilter" (input)="applyFilters()" placeholder="Search events by keywords...">
+            <mat-icon matSuffix mat-button (click)="applyFilters()">search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let event of events()">
+        <app-event-card [event]="event"></app-event-card>
+      </div>
+      <div class="col-12" *ngIf="events().length === 0 && !loading()">
+        <p class="text-muted">No events found matching your criteria.</p>
+      </div>
+      <div class="col-12 text-center" *ngIf="loading()">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </div>
+  </section>
+</div>

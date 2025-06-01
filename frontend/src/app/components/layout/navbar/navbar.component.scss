@@ -1,0 +1,261 @@
+/* src/app/components/navbar/navbar.component.scss */
+@use "bootstrap/scss/bootstrap-grid";
+@use "sass:color";
+
+.custom-navbar {
+  background: linear-gradient(to right, #ffc0cb, #ffb6c1, #ff7f7f) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 14px 24px;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 20px;
+
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 22px;
+    color: rgb(12, 12, 28) !important;
+    letter-spacing: 1.2px;
+    transition: color 0.3s, transform 0.3s;
+    &:hover {
+      color: #002b2b !important;
+      transform: scale(1.08);
+    }
+  }
+
+  .navbar-toggler {
+    border: 1px solid rgba(26, 26, 64, 0.6);
+    border-radius: 6px;
+    padding: 5px 8px;
+    transition: background 0.3s;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    .nav-item {
+      .nav-link {
+        color: rgb(12, 12, 28) !important;
+        font-weight: 500;
+        padding: 12px 18px;
+        border-radius: 10px;
+        transition: all 0.4s ease-in-out;
+        position: relative;
+
+        &:hover,
+        &:focus {
+          color: #170303 !important;
+          transform: scale(1.06);
+          box-shadow: 0 2px 8px rgba(255, 79, 79, 0.3);
+        }
+
+        &.active {
+          font-weight: 700;
+          color: #050000 !important;
+          border-radius: 12px;
+          padding: 12px 20px;
+        }
+      }
+    }
+
+    .nav-item.dropdown {
+      .dropdown-toggle {
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        background-color: #ffc0cb;
+        color: #1a1a40 !important;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        &:hover,
+        &:focus,
+        &.show {
+          background-color: #ffb6c1;
+          color: #002b2b !important;
+          transform: scale(1.03);
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    // Button styling for any extra buttons in the nav
+    .btn {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: #ff4f4f;
+        color: rgb(12, 12, 28);
+        transform: scale(1.07);
+      }
+    }
+
+    // Search bar styling
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 5px 10px;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      input.form-control {
+        background: transparent;
+        border: none;
+        color: rgb(12, 12, 28);
+        padding: 8px 12px;
+        border-radius: 20px;
+        width: 200px;
+        &:focus {
+          box-shadow: none;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+      }
+      .search-btn {
+        background: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        margin-left: 8px;
+        font-size: 18px;
+        transition: color 0.3s;
+        &:hover {
+          color: rgb(12, 12, 28);
+        }
+      }
+    }
+
+    // Notification bell styling
+    .notification-bell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      .mat-icon {
+        font-size: 24px;
+      }
+      .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #ff4f4f;
+        color: rgb(12, 12, 28);
+        font-size: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Dropdown Menu Styling
+.dropdown-menu {
+  background-color: #b3c8cf;
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease-in-out;
+  .dropdown-item {
+    background: whitesmoke;
+    color: #1a1a40;
+    font-weight: 500;
+    padding: 5px 10px;
+    border: 2px solid #1a1a40;
+    border-radius: 2px 0 0 2px;
+    transition: background 0.3s, color 0.3s;
+    &:hover,
+    &:focus {
+      background: #ddd;
+      color: rgb(12, 12, 28);
+      font-weight: 600;
+    }
+  }
+  .dropdown-divider {
+    margin: 8px 0;
+  }
+}
+
+// Responsive Fixes
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+    width: 100%;
+    gap: 12px;
+    .nav-item {
+      margin-bottom: 10px;
+    }
+    .search-bar {
+      width: 100%;
+      input.form-control {
+        width: 100%;
+      }
+    }
+  }
+  .dropdown-menu {
+    text-align: center;
+  }
+}
+
+// Custom Cursor Effect
+.cursor {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(45deg, #ff7f7f, #ffb6c1, #ffc0cb);
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, background 0.3s;
+  mix-blend-mode: difference;
+  z-index: 9999;
+}
+
+.navbar-nav .nav-link:hover ~ .cursor,
+.btn:hover ~ .cursor,
+.dropdown-item:hover ~ .cursor,
+.dropdown-toggle:hover ~ .cursor,
+.notification-bell:hover ~ .cursor {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(45deg, #ff4f4f, #ff7f7f, #ffb6c1);
+  transform: scale(1.6);
+  box-shadow: 0 0 15px rgba(255, 79, 79, 0.5);
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: white !important;
+    background: linear-gradient(to right, #ff7f7f, #ff4f4f) !important;
+    border-radius: 10px;
+    transform: scale(1.06);
+    box-shadow: 0 2px 8px rgba(255, 79, 79, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

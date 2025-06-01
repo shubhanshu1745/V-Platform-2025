@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/default}">
+<head>
+    <title th:text="${pageTitle}">Volunteer Hub - Home</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading" style="color: var(--primary-nav-header-text);">Welcome to <span style="font-weight: bold;">Volunteer Hub</span></h1>
+            <p class="lead text-light" style="font-size: 1.2rem;">Find meaningful volunteer opportunities and make a difference in your community.</p>
+            <p>
+                <a th:href="@{/events}" class="btn btn-primary my-2">Browse Events</a>
+                <a th:href="@{/register}" class="btn btn-secondary my-2">Join as Volunteer</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="mb-4" style="color: var(--primary-text);">Newest Volunteer Events</h2>
+        <div class="row" th:if="${events.isEmpty()}">
+            <div class="col">
+                <p>No events available at the moment.</p>
+            </div>
+        </div>
+        <div class="row" th:if="${!events.isEmpty()}">
+            <div class="col-md-6" th:each="event : ${events}">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${event.title}" style="color: var(--secondary-text);"></h5>
+                        <p class="card-text" th:text="${event.description}"></p>
+                        <p class="card-text"><small class="text-muted-secondary">Location: <span th:text="${event.location}"></span></small></p>
+                        <a th:href="@{/events/{eventId}(eventId=${event.eventId})}" class="btn btn-primary btn-sm">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout/default :: footer}"></footer> <!- Re-use default footer -->
+<footer th:fragment="footer" class="mt-5 bg-footer-primary text-light text-center py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>About Volunteer Hub</h4>
+                <p>Our platform connects volunteers with organizations to create positive change.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <p>Email: contact@volunteerhub.com</p>
+                <p>Phone: +1-555-123-4567</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Platform Info</h4>
+                <p><a href="#" class="text-light">Terms of Service</a></p>
+                <p><a href="#" class="text-light">Privacy Policy</a></p>
+            </div>
+        </div>
+        <hr class="bg-light my-3">
+        <p>© 2024 Volunteer Hub. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

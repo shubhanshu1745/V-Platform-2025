@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/default}">
+<head>
+    <title th:text="${pageTitle}">Events - Volunteer Platform</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="mb-4" style="color: var(--primary-text);">Explore Volunteer Events</h2>
+
+    <div class="mb-4">
+        <form th:action="@{/events}" method="get" class="row gy-2 gx-3 align-items-center">
+            <div class="col-auto">
+                <label class="visually-hidden" for="pincode">Pincode</label>
+                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" th:value="${param.pincode}">
+            </div>
+            <div class="col-auto">
+                <label class="visually-hidden" for="skills">Skills</label>
+                <input type="text" class="form-control" id="skills" name="skills" placeholder="Skills (comma-separated)" th:value="${param.skills}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Search Events</button>
+            </div>
+        </form>
+    </div>
+
+    <div th:if="${events.isEmpty()}">
+        <p>No events available matching your criteria.</p>
+    </div>
+    <div class="row" th:if="${!events.isEmpty()}">
+        <div class="col-md-6" th:each="event : ${events}">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${event.title}" style="color: var(--secondary-text);"></h5>
+                    <p class="card-text" th:text="${event.description}"></p>
+                    <p class="card-text"><small class="text-muted-secondary">Location: <span th:text="${event.location}"></span></small></p>
+                    <p class="card-text" th:if="${event.paymentAmount != null and event.paymentAmount > 0}">
+                        <small class="text-muted-secondary">Paid Event: <span th:text="${event.paymentAmount}"></span> INR</small>
+                    </p>
+                    <a th:href="@{/events/{eventId}(eventId=${event.eventId})}" class="btn btn-primary btn-sm">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

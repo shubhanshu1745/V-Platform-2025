@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/default}">
+<head>
+    <title th:text="${pageTitle}">Admin Dashboard - Volunteer Platform</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="mb-4" style="color: var(--primary-text);">Admin Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header" style="background-color: var(--alternate-content-bg);">
+                    User Management
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Manage users, roles, and permissions.</p>
+                    <a href="#" class="btn btn-secondary btn-sm">View Users</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header" style="background-color: var(--alternate-content-bg);">
+                    Event Management
+                </div>
+                <div class="card-body">
+                    <p class="card-text">View and manage all events on the platform.</p>
+                    <a href="#" class="btn btn-secondary btn-sm">View Events</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header" style="background-color: var(--alternate-content-bg);">
+                    Pincode Management
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Upload and manage pincode data.</p>
+                    <a href="#" class="btn btn-secondary btn-sm">Manage Pincodes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header" style="background-color: var(--alternate-content-bg);">
+                    System Logs
+                </div>
+                <div class="card-body">
+                    <p class="card-text">View application logs and system information.</p>
+                    <a href="#" class="btn btn-secondary btn-sm">View Logs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

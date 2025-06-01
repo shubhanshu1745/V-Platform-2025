@@ -1,0 +1,86 @@
+/* Pricing Page Styles */
+.pricing-page {
+    max-width: 960px; /* Adjust max-width for pricing page */
+    padding: 3rem 2rem; /* More padding for pricing page */
+  
+    h2 {
+      margin-bottom: 1rem;
+      color: #748794;
+      text-align: center;
+    }
+  
+    .lead {
+      font-size: 1.1rem;
+      color: #555;
+    }
+  }
+  
+  /* Pricing Card Styles */
+  .pricing-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  
+    .card-header {
+      background-color: #f8f9fa;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  
+    .card-body {
+      padding: 1.5rem;
+      text-align: center;
+    }
+  
+    .pricing-card-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+  
+      small {
+        font-size: 1rem;
+        color: #777;
+      }
+    }
+  
+    ul.list-unstyled {
+      margin-bottom: 1.5rem;
+  
+      li {
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+        color: #555;
+      }
+    }
+  
+    .btn-primary, .btn-outline-primary {
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease-in-out;
+    }
+  
+    &.free-plan .card-header {
+      background-color: #e0f7fa; /* Light Cyan */
+      color: #00838f;         /* Dark Cyan Text */
+    }
+  
+    &.essential-plan .card-header {
+      background-color: #fff3cd; /* Light Yellow */
+      color: #ffb300;         /* Amber Text */
+    }
+  
+    &.professional-plan .card-header {
+      background-color: #e8f5e9; /* Light Green */
+      color: #388e3c;         /* Green Text */
+    }
+  }

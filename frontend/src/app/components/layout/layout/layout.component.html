@@ -1,0 +1,19 @@
+<!-- src/app/layout/layout.component.html -->
+<div class="app-layout">
+  <header>
+    <app-navbar></app-navbar>
+  </header>
+  <div class="app-body"> <!-- New app-body container for sidebar and content -->
+    <aside class="app-sidebar" *ngIf="authService.isAuthenticated() && authService.isOrganizerRole()"> 
+      <app-organizer-sidebar></app-organizer-sidebar>
+    </aside>
+    <main class="app-content">
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+</div>

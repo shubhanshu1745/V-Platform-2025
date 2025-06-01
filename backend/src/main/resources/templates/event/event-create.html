@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/default}">
+<head>
+    <title th:text="${pageTitle}">Create Event - Volunteer Platform</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="mb-4" style="color: var(--primary-text);">Create a New Volunteer Event</h2>
+    <form th:action="@{/api/v1/events/create}" th:object="${eventDTO}" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Event Title</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" th:field="*{description}" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date and Time</label>
+            <input type="datetime-local" class="form-control" id="startDate" th:field="*{startDate}" required>
+        </div>
+        <div class="mb-3">
+            <label for="endDate" class="form-label">End Date and Time</label>
+            <input type="datetime-local" class="form-control" id="endDate" th:field="*{endDate}" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" th:field="*{location}" required>
+        </div>
+        <div class="mb-3">
+            <label for="requiredSkills" class="form-label">Required Skills (comma-separated)</label>
+            <input type="text" class="form-control" id="requiredSkills" th:field="*{requiredSkills}">
+        </div>
+        <div class="mb-3">
+            <label for="volunteerCapacity" class="form-label">Volunteer Capacity</label>
+            <input type="number" class="form-control" id="volunteerCapacity" th:field="*{volunteerCapacity}" min="1">
+        </div>
+        <div class="mb-3">
+            <label for="paymentAmount" class="form-label">Participation Fee (INR)</label>
+            <input type="number" class="form-control" id="paymentAmount" th:field="*{paymentAmount}" min="0" step="0.01">
+        </div>
+        <div class="mb-3">
+            <label for="pincode" class="form-label">Pincode</label>
+            <input type="text" class="form-control" id="pincode" th:field="*{pincode}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Event</button>
+    </form>
+</div>
+</body>
+</html>

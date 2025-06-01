@@ -1,0 +1,46 @@
+/* src/app/layout/layout.component.scss */
+@use 'bootstrap/scss/bootstrap-grid';
+@use 'sass:color';
+
+/* Custom styles for the app layout */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  header {
+    margin-top: 2px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 0.3rem;
+  }
+
+  .app-body { /* New app-body style to contain sidebar and content */
+    display: flex;
+    flex: 1; /* app-body takes up remaining vertical space */
+  }
+
+  .app-sidebar { /* Sidebar style */
+    width: 250px; /* Or your desired sidebar width */
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    // background-color: #f8f9fa; /* Sidebar background color - already set in sidebar component scss */
+    // border-right: 1px solid #eee; /* Sidebar border - already set in sidebar component scss */
+  }
+
+  .app-content {
+    flex: 1; /* Content takes up remaining horizontal space */
+    padding: 1rem 0;
+    background-color: #f8f8ff;
+  }
+
+
+  footer {
+    background-color: #e0e0e0;
+    margin-bottom: 2px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 5px;
+    text-align: center;
+    margin-top: auto;
+  }
+}

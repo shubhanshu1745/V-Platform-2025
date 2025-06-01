@@ -1,0 +1,18 @@
+<div class="card user-card" *ngIf="user">
+    <div class="card-body">
+        <img *ngIf="user.photoBase64; else defaultImage" [src]="'data:image/jpeg;base64,' + user.photoBase64"
+            alt="User Photo" class="user-photo">
+        <ng-template #defaultImage>
+            <img src="assets/images/default-profile.png" alt="Default User Photo" class="user-photo">
+        </ng-template>
+
+        <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+        <p class="card-text" *ngIf="user.email">{{ user.email }}</p>
+        <p class="card-text" *ngIf="user.pincode">Pincode: {{ user.pincode }}</p>
+        <p class="card-text" *ngIf="user.skills">
+            <strong>Skills:</strong>
+            <span *ngFor="let skill of user.skills.split(',')" class="badge bg-secondary me-1">{{ skill.trim()
+                }}</span>
+        </p>
+    </div>
+</div>

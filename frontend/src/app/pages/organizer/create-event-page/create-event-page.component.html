@@ -1,0 +1,93 @@
+<div class="create-event-page">
+  <div class="container">
+    <h2>Create a New Event</h2>
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="event-form">
+      <div class="form-section">
+        <h3>Basic Information</h3>
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Event Title</mat-label>
+            <input matInput id="title" formControlName="title" required>
+            <mat-error *ngIf="eventForm.controls['title'].hasError('required')">Title is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+            <input matInput id="location" formControlName="location" required>
+            <mat-error *ngIf="eventForm.controls['location'].hasError('required')">Location is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Pincode</mat-label>
+            <input matInput id="pincode" formControlName="pincode" required>
+            <mat-error *ngIf="eventForm.controls['pincode'].hasError('required')">Pincode is required</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput id="description" formControlName="description" rows="5" required></textarea>
+          <mat-error *ngIf="eventForm.controls['description'].hasError('required')">Description is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-section">
+        <h3>Date & Time</h3>
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Start Date & Time</mat-label>
+            <input matInput type="datetime-local" id="startDate" formControlName="startDate" required>
+            <mat-error *ngIf="eventForm.controls['startDate'].hasError('required')">Start date is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>End Date & Time</mat-label>
+            <input matInput type="datetime-local" id="endDate" formControlName="endDate" required>
+            <mat-error *ngIf="eventForm.controls['endDate'].hasError('required')">End date is required</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Registration Date</mat-label>
+            <input matInput type="datetime-local" id="lastRegistrationDate" formControlName="lastRegistrationDate">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Volunteers & Payment</h3>
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Volunteer Capacity</mat-label>
+            <input matInput type="number" id="volunteerCapacity" formControlName="volunteerCapacity" placeholder="e.g., 50">
+            <mat-error *ngIf="eventForm.controls['volunteerCapacity'].hasError('min')">Capacity must be non-negative</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Payment Amount (USD)</mat-label>
+            <input matInput type="number" id="paymentAmount" formControlName="paymentAmount" placeholder="e.g., 25.00">
+            <mat-error *ngIf="eventForm.controls['paymentAmount'].hasError('min')">Payment amount must be non-negative</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Required Skills (comma separated)</mat-label>
+          <input matInput id="requiredSkills" formControlName="requiredSkills" placeholder="e.g., First Aid, Cooking">
+        </mat-form-field>
+      </div>
+      <div class="form-section">
+        <h3>Contact & Media</h3>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contact Information</mat-label>
+          <textarea matInput id="contacts" formControlName="contacts" rows="3" placeholder="Email, Phone, etc."></textarea>
+        </mat-form-field>
+        <div class="photo-upload">
+          <label for="photoFile" class="form-label">Event Photo</label>
+          <input type="file" id="photoFile" (change)="onFileChange($event)">
+          <div class="photo-preview" *ngIf="photoPreview">
+            <img [src]="photoPreview" alt="Photo Preview">
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="eventForm.invalid || loading()">
+          <span *ngIf="loading(); else createEventText">
+            <app-loading-spinner [diameter]="20"></app-loading-spinner>
+          </span>
+          <ng-template #createEventText>Create Event</ng-template>
+        </button>
+        <button mat-button type="button" routerLink="/organizer/dashboard">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
